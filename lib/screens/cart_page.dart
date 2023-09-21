@@ -135,7 +135,9 @@ class _MyCartState extends State<MyCart> {
                                                     onPressed: () {
                                                       setState(() {
                                                         (e['quantity'] != 1)
-                                                            ? Decreement()
+                                                            ? e['quantity'] =
+                                                                e['quantity'] -
+                                                                    1
                                                             : cartFoods
                                                                 .remove(e);
                                                       });
@@ -155,7 +157,8 @@ class _MyCartState extends State<MyCart> {
                                                   IconButton(
                                                     onPressed: () {
                                                       setState(() {
-                                                        Increement();
+                                                        e['quantity'] =
+                                                            e['quantity'] + 1;
                                                       });
                                                     },
                                                     icon: const Icon(
@@ -184,7 +187,7 @@ class _MyCartState extends State<MyCart> {
                                             width: 5,
                                           ),
                                           Text(
-                                            "₹ ${e['cartprice']}",
+                                            "₹ $cartprice",
                                             style: TextStyle(
                                               color: Colors.grey.shade400,
                                             ),
@@ -206,19 +209,98 @@ class _MyCartState extends State<MyCart> {
                     ),
                   ),
                   Expanded(
-                    flex: 5,
+                    flex: 4,
                     child: Container(
-                      decoration: const BoxDecoration(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        ),
                       ),
                       child: Column(
                         children: [
-                          Row(
-                            children: [Text("Subtotal"), Text("$Subtotal()")],
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: EdgeInsets.only(bottom: 5),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                )),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Subtotal"),
+                                  Text("$subtotal"),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: EdgeInsets.only(bottom: 5),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                )),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Delivery"),
+                                  Text("₹ 60"),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: EdgeInsets.only(bottom: 7),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                )),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Totle"),
+                                  Text("$subtotal"),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: Colors.amber,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                              ),
+                              child: Text(
+                                "CHECKOUT",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),

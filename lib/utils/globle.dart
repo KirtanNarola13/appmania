@@ -321,26 +321,33 @@ List<Map<String, dynamic>> allFoods = [
   },
 ];
 List<Map<String, dynamic>> cartFoods = [];
+List<Map<String, dynamic>> favFoods = [];
 Increement() {
   cartFoods.forEach((e) {
     e['quantity'] += 1;
   });
 }
 
-Decreement() {
+int delivery = 60;
+int cartprice = 0;
+int subtotal = 0;
+int gettotal = 0;
+
+updateCartPrice() {
+  cartprice = 0;
   cartFoods.forEach((e) {
-    e['quantity'] -= 1;
+    cartprice += int.parse(e['cartprice'] * e['quantity']);
   });
 }
 
-Cartprice() {
-  cartFoods.map((e) {
-    return e['cartprice'] * e['quantity'];
+updateSubtotal() {
+  subtotal = 0;
+  cartFoods.forEach((e) {
+    subtotal += int.parse(e['price'] * e['quantity']);
   });
 }
 
-Subtotal() {
-  cartFoods.map((e) {
-    return e['cartprice'] + e['cartprice'];
-  });
+updateTotal() {
+  updateSubtotal();
+  gettotal = subtotal + delivery;
 }

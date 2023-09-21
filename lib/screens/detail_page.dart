@@ -94,7 +94,7 @@ class _DetailPageState extends State<DetailPage> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Decreement();
+                            data['quantity'] = data['quantity'] - 1;
                           },
                           icon: const Icon(
                             Icons.remove,
@@ -110,7 +110,7 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                         IconButton(
                           onPressed: () {
-                            Increement();
+                            data['quantity'] = data['quantity'] + 1;
                           },
                           icon: const Icon(
                             Icons.add,

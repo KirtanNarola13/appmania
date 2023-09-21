@@ -36,7 +36,11 @@ class _AppManiaState extends State<AppMania> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                Navigator.of(context).pushNamed('fav_page');
+              });
+            },
             icon: const Icon(
               Icons.favorite_outline_rounded,
               color: Colors.black,
@@ -250,6 +254,11 @@ class _AppManiaState extends State<AppMania> {
                                                           e['faveProduct'] =
                                                               !e['faveProduct'];
                                                         });
+                                                        (e['faveProduct'] ==
+                                                                true)
+                                                            ? favFoods.add(e)
+                                                            : favFoods
+                                                                .remove(e);
                                                       },
                                                       icon: (e['faveProduct'] ==
                                                               false)
@@ -280,8 +289,10 @@ class _AppManiaState extends State<AppMania> {
                                                         },
                                                       );
                                                       (indecree != true)
-                                                          ? e['quantity'] = 1
-                                                          : Decreement();
+                                                          ? e['quantity'] =
+                                                              e['quantity'] + 1
+                                                          : e['quantity'] =
+                                                              e['quantity'] - 1;
                                                       (e['added'] != false)
                                                           ? cartFoods.add(e)
                                                           : cartFoods.remove(e);
